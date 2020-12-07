@@ -77,7 +77,7 @@ def store_message(message):
                 user[word] = 1
     else:
         stored_messages[message.author] = dict.fromkeys(tokenized_messages, 1)
-    return tokenized_messages\
+    return tokenized_messages
 
 """
 gives the top words of the dictionary given
