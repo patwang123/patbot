@@ -56,9 +56,8 @@ async def on_message(message):
             raise discord.DiscordException
     elif message.content[0] == '?':
         if tokenized_messages[0].lower() == '?topwords':
-            await message.channel.send(
-                            get_top_words(
-                                stored_messages[message.author],5))
+            formatted_words = '\n'.join([f'{word}: {count}' for word, count in get_top_words(stored_messages[message.author], 5)])
+            await message.channel.send(f'{message.author}\'s top words:\n```\n {formatted_words}\n```')
         else:
             raise discord.DiscordException
 
