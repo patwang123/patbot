@@ -11,16 +11,6 @@ also i probably won't be able to find one for conversational speech (idk, bet, l
 that it will override other things, but that might mess up the algorithm for some. OR i just add one count of each, so that if i type it in it'll recognize it
 """
 
-import re
-import collections
-
-def word_counts(txt):
-    words = collections.Counter(
-                    re.findall(r'\w+', open(txt).read().lower()))
-    return words
-
-words = word_counts('corpus.txt') #no need to normalize, this aint ML
-
 def most_probable_edit(pruned_edits):
     return max(pruned_edits, key = lambda x: words[x])
 
