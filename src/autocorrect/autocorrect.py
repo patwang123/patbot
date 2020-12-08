@@ -10,6 +10,10 @@ NEED TO FIND A CORPUS BECAUSE I DONT HAVE ONE
 also i probably won't be able to find one for conversational speech (idk, bet, lmfao) but that's whatever. maybe i'll just add like 5000x counts of those words just so
 that it will override other things, but that might mess up the algorithm for some. OR i just add one count of each, so that if i type it in it'll recognize it
 """
+import pickle
+
+with open('corpus_counter.pickle','rb') as pick:
+    words = pickle.load(pick)
 
 def most_probable_edit(pruned_edits):
     return max(pruned_edits, key = lambda x: words[x])
@@ -44,3 +48,6 @@ def autocorrect(word):
         edits = re_edit(edits)
         pruned_edits = prune(edits)
     return word #couldn't find edit
+
+def autocorrect_all(sentence):
+    return [autocorrect(word.lower()) for word in sentence]
