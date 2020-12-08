@@ -49,11 +49,24 @@ async def on_message(message):
     tokenized_messages = store_message(message)
 
     await message.channel.send(message.content)
+
+    """
+    Standard text functions (!):
+    !talk - sends a preset message
+    !echo - echoes what the user says after it
+
+    Storage functions (?):
+    ?topwords - sends the topwords of the current user
+    """
     if message.content[0] == '!':
-        if tokenized_messages[0].lower() == '!talk':
+        command = tokenized_messages[0].lower()
+        if command == '!talk':
             await message.channel.send('HELLO IM PATBOT AND THIS IS AN AUTOMESSAGE FOR !TALK')
+        elif command == '!echo':
+            await message.channel.send(' '.join(tokenized_messages[1:]))
         else:
             raise discord.DiscordException
+
     elif message.content[0] == '?':
         if tokenized_messages[0].lower() == '?topwords':
             top_words = get_top_words(stored_messages[message.author], 5)
