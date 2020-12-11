@@ -30,6 +30,8 @@ async def on_ready():
     members = '\n - '.join([member.name for member in guild.members])
     print(f'Guild Members:\n - {members}')
 
+    await guild.channels[0].send('hey whats up i am patbot nice to meet you')
+
 """
 Called when a member joins the server
 """
