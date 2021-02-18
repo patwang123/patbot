@@ -3,9 +3,10 @@ from collections import Counter
 import os
 
 
-
+from discord.ext import tasks, commands
 import discord
 from dotenv import load_dotenv
+import asyncio
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN_AUTH')
@@ -39,6 +40,15 @@ Called when a member joins the server
 async def on_member_join(member):
     await member.create_dm()
     await member.dm_channel.send(f'HELLO {member.name} NICE TO MEET YOU')
+
+async def timer_status(ctx, username):
+    while True:
+        #do something
+        await asyncio.sleep(10)
+
+@client.command()
+async def timer_status(ctx, username):
+    client.loop.create_task(status(ctx,username))
 
 """
 Main processor for messages sent in the discord channel
